@@ -8,7 +8,7 @@ import { page_routes } from "@/lib/routes-config";
 export const NAVLINKS = [
   {
     title: "GitHub",
-    href: "https://github.com/Cannon07/BookWebsite",
+    href: "https://github.com/differentiablephysics/differentiablephysics.github.io",
   },
 ];
 
