@@ -2,60 +2,86 @@
 
 This repository contains the source code for the Differentiable Physics book website hosted at [differentiablephysics.github.io](https://differentiablephysics.github.io/).
 
-## Getting Started
+## Adding New Chapters
+
+The website content is managed through LaTeX files that are automatically converted to MDX format. Here's how to add a new chapter:
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) (v14 or newer)
-- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+- Python 3.x with the following packages:
+  ```bash
+  pip install pypandoc
+  ```
+- Node.js and npm
 
-### Setup Instructions
+### Directory Structure
 
-1. **Clone the repository**
+```
+.
+├── chapters/           # Source LaTeX files
+├── contents/
+│   └── docs/          # Generated MDX files (chapters content)
+│       └── introduction/  # Example chapter
+├── scripts/
+│   ├── convert_tex_to_md.py   # LaTeX to MDX converter
+│   └── process-chapter.ts     # Chapter processing script
+└── lib/
+    └── routes-config.ts       # Navigation configuration
+```
 
+### Adding a New Chapter
+
+1. **Save LaTeX Files**
+   - Save it in the `chapters/` directory (e.g., `chapters/my-chapter.tex`)
+
+2. **Process the Chapter**
+   Run the following command to convert the LaTeX file to MDX and update the website navigation:
    ```bash
-   git clone https://github.com/differentiablephysics/differentiablephysics.github.io.git
-   cd differentiablephysics.github.io
+   npx ts-node scripts/process-chapter.ts chapters/my-chapter.tex "Chapter Title"
    ```
+   This will:
+   - Convert the LaTeX file to MDX format
+   - Create a directory in `contents/docs/` with the chapter name
+   - Place the converted `index.mdx` file in that directory
+   - Update the navigation routes
+   - Attempt to rebuild the website
 
-2. **Install dependencies**
-
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
-
-3. **Run the development server**
-
+3. **Verify the Results**
+   - Check the generated MDX file in `contents/docs/my-chapter/index.mdx`
+   - Ensure the chapter appears in the navigation
+   - Test the website locally:
    ```bash
    npm run dev
-   # or
-   yarn dev
    ```
 
-   This will start a Next.js development server at `http://localhost:3000` where you can preview the website.
+### Troubleshooting
 
-4. **Build for production**
+If you encounter issues:
 
-   ```bash
-   npm run build
-   # or
-   yarn build
-   ```
+1. **Conversion Errors**
+   - Check the LaTeX syntax in your source file
+   - Ensure all required packages are installed
+   - Look for unsupported LaTeX commands
 
-   This will generate an optimized production build.
+2. **Navigation Issues**
+   - Check `lib/routes-config.ts` for correct route configuration
+   - Ensure chapter titles and paths match
 
-5. **Start the production server**
+3. **Build Errors**
+   - Run `npm run build` to see detailed error messages
+   - Check TypeScript errors in the console
+   - Verify MDX syntax in the generated files
 
-   ```bash
-   npm run start
-   # or
-   yarn start
-   ```
+## Development
 
-   This runs the built app in production mode.
+To run the website locally:
 
+```bash
+npm install
+npm run dev
+```
+
+The site will be available at `http://localhost:3000`
 ## Deployment
 
 The website is automatically deployed via GitHub Pages when changes are pushed to the main branch.
