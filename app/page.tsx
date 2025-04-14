@@ -1,3 +1,4 @@
+import React from "react";
 import { buttonVariants } from "@/components/ui/button";
 import { page_routes } from "@/lib/routes-config";
 import Link from "next/link";
