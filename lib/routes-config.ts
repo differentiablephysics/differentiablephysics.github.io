@@ -7,16 +7,12 @@ export type EachRoute = {
     export const ROUTES: EachRoute[] = [
   {
     "title": "Chapters",
-    "href": "/introduction",
+    "href": "/chapters",
     "noLink": true,
     "items": [
       {
         "title": "Introduction",
         "href": "/introduction"
-      },
-      {
-        "title": "Introduction",
-        "href": "/"
       }
     ]
   }
