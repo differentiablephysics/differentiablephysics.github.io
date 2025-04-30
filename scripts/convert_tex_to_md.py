@@ -83,16 +83,6 @@ def remove_labels(content):
     content = re.sub(r'\n\s*\n\s*\n', '\n\n', content)
     return content
 
-def add_frontmatter(content, title):
-    """Add YAML frontmatter to the content."""
-    frontmatter = f"""---
-    title: "{title}"
-    description: "{title}"
-    ---
-
-    """
-    return frontmatter + content
-
 def extract_title(tex_content):
     """Extract title from LaTeX content."""
     chapter_match = re.search(r'\\chapter\{([^}]*)\}', tex_content)
@@ -456,8 +446,6 @@ def convert_tex_to_mdx(tex_file, output_dir):
         # Remove any inline styles from HTML tags
         mdx_content = remove_inline_styles(mdx_content)
         
-        mdx_content = add_frontmatter(mdx_content, title)
-
         mdx_file = os.path.join(output_dir, 'index.mdx')
         with open(mdx_file, 'w') as file:
             file.write(mdx_content)

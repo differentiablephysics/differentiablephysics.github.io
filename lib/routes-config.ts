@@ -13,6 +13,10 @@ export type EachRoute = {
       {
         "title": "Introduction",
         "href": "/introduction"
+      },
+      {
+        "title": "Multidimensional Optimization",
+        "href": "/multidimensional_optimization"
       }
     ]
   }
